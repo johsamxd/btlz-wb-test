@@ -5,23 +5,22 @@
 export async function up(knex) {
     return knex.schema.createTable("box_rates", (table) => {
         table.increments("id").primary();
-        table.decimal("boxDeliveryBase", 10, 2);
-        table.text("boxDeliveryCoefExpr");
-        table.decimal("boxStorageBase", 10, 2);
-        table.text("boxStorageCoefExpr");
-        table.decimal("boxPickupBase", 10, 2);
-        table.text("boxPickupCoefExpr");
-        table.date("dtNextBox");
-        table.date("dtTillMax");
-        table.text("boxDeliveryAndStorageExpr");
-        table.text("boxStorageExpr");
-        table.text("boxDeliveryBaseExpr");
-        table.text("boxDeliveryLiterExpr");
-        table.text("boxPickupExpr");
+        table.date("date").notNullable();
+        table.string("boxDeliveryBase");
+        table.string("boxDeliveryCoefExpr");
+        table.string("boxDeliveryLiter");
+        table.string("boxDeliveryMarketplaceBase");
+        table.string("boxDeliveryMarketplaceCoefExpr");
+        table.string("boxDeliveryMarketplaceLiter");
+        table.string("boxStorageBase");
+        table.string("boxStorageCoefExpr");
+        table.string("boxStorageLiter");
         table.string("geoName");
         table.string("warehouseName");
-        table.date("date").notNullable();
+        table.timestamp("created_at").defaultTo(knex.fn.now());
         table.timestamp("updated_at").defaultTo(knex.fn.now());
+
+        table.unique(["date", "warehouse_name"]);
     });
 }
 
