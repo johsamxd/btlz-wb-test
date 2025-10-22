@@ -20,6 +20,8 @@ const envSchema = z.object({
             .transform((value) => parseInt(value)),
     ]),
     SPREADSHEET_ID: z.string(),
+    WB_API_URL: z.string(),
+    WB_API_KEY: z.string(),
 });
 
 const env = envSchema.parse({
@@ -31,6 +33,8 @@ const env = envSchema.parse({
     NODE_ENV: process.env.NODE_ENV,
     APP_PORT: process.env.APP_PORT,
     SPREADSHEET_ID: process.env.SPREADSHEET_ID,
+    WB_API_URL: process.env.WB_API_URL,
+    WB_API_KEY: process.env.WB_API_KEY,
 });
 
 export default env;
