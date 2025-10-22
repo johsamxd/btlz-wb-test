@@ -7,10 +7,10 @@ export class CronService {
     private tariffsClient = tariffsClient;
 
     start() {
-        cron.schedule("0 * * * *", async () => {
+        cron.schedule("1 * * * * *", async () => {
             try {
                 const data = await this.tariffsClient.fetchData();
-                const rates: BoxRate[] = data.data;
+                const rates: BoxRate[] = data?.response?.data?.warehouseList;
 
                 for (const rate of rates) {
                     const date = new Date(new Date().toISOString().split("T")[0]);

@@ -7,9 +7,6 @@ await seed.run();
 
 console.log("All migrations and seeds have been run");
 
-// const data = await tariffsClient.fetchData();
-// console.log(data);
-
 const cron = new CronService();
 try {
     cron.start();

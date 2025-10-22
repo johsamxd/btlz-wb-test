@@ -1,12 +1,14 @@
-import axios, { AxiosInstance } from "axios";
+import axios from "axios";
 import { api } from "./api.js";
 
 class TariffsClient {
-    private apiInstance: AxiosInstance = api;
+    async fetchData(date?: string) {
+        const queryDate = date || new Date().toISOString().split("T")[0];
 
-    async fetchData() {
         try {
-            const { data } = await this.apiInstance.get("/api/v1/tariffs/box");
+            const { data } = await api.get("/api/v1/tariffs/box", {
+                params: { date: queryDate },
+            });
             return data;
         } catch (err) {
             if (axios.isAxiosError(err)) {
