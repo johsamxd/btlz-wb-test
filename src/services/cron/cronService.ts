@@ -2,8 +2,9 @@ import * as cron from "node-cron";
 import { tariffsClient } from "#services/wb/tariffsClient.js";
 import knex from "#postgres/knex.js";
 import { BoxRate } from "#models/BoxRate.js";
+import { googleSheetsService } from "#services/googlesheets/googleSheetsService.js";
 
-export class CronService {
+class CronService {
     private tariffsClient = tariffsClient;
 
     start() {
@@ -34,6 +35,7 @@ export class CronService {
                         .merge();
                 }
 
+                await googleSheetsService.exportToSheets();
                 console.log(`Updated ${rates.length} box rates in DB`);
             } catch (error) {
                 console.error("Cron task failed", error);
@@ -41,3 +43,5 @@ export class CronService {
         });
     }
 }
+
+export const cronService = new CronService();

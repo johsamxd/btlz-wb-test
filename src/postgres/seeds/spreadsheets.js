@@ -5,8 +5,14 @@ import env from "#config/env/env.js";
  * @returns {Promise<void>}
  */
 export async function seed(knex) {
-    await knex("spreadsheets")
-        .insert([{ spreadsheet_id: env.SPREADSHEET_ID }])
-        .onConflict(["spreadsheet_id"])
-        .ignore();
+    const ids = env.SPREADSHEET_IDS;
+    if (ids.length === 0) {
+        console.log("No spreadsheet IDs to seed");
+        return;
+    }
+
+    const data = ids.map((id) => ({ spreadsheet_id: id }));
+    await knex("spreadsheets").insert(data).onConflict(["spreadsheet_id"]).ignore();
+
+    console.log(`Seeded ${ids.length} spreadsheet IDs`);
 }

@@ -19,7 +19,8 @@ const envSchema = z.object({
             .regex(/^[0-9]+$/)
             .transform((value) => parseInt(value)),
     ]),
-    SPREADSHEET_ID: z.string(),
+    GOOGLE_KEY_PATH: z.string(),
+    SPREADSHEET_IDS: z.array(z.string()).default([]),
     WB_API_URL: z.string(),
     WB_API_KEY: z.string(),
 });
@@ -32,7 +33,8 @@ const env = envSchema.parse({
     POSTGRES_PASSWORD: process.env.POSTGRES_PASSWORD,
     NODE_ENV: process.env.NODE_ENV,
     APP_PORT: process.env.APP_PORT,
-    SPREADSHEET_ID: process.env.SPREADSHEET_ID,
+    GOOGLE_KEY_PATH: process.env.GOOGLE_KEY_PATH,
+    SPREADSHEET_IDS: process.env.SPREADSHEET_IDS?.split(", ") || [],
     WB_API_URL: process.env.WB_API_URL,
     WB_API_KEY: process.env.WB_API_KEY,
 });
