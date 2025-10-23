@@ -8,7 +8,7 @@ class CronService {
     private tariffsClient = tariffsClient;
 
     start() {
-        cron.schedule("1 * * * * *", async () => {
+        cron.schedule("1 * * * *", async () => {
             try {
                 const data = await this.tariffsClient.fetchData();
                 const rates: BoxRate[] = data?.response?.data?.warehouseList;

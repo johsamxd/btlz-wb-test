@@ -62,3 +62,23 @@ docker compose up --build
 PS: С наилучшими пожеланиями!
 
 # Результат
+
+## Как запустить:
+
+1. Клонировать репозиторий
+2. cd ./btlz-wb-test
+3. npm i
+4. Ввести в .env необходимые значения
+5. Получить json-файл ключа от google service account и загрузить в ./keys
+6. Выдать доступ к таблицам для service account, и не забыть включить Google Sheets API для service account
+7. docker compose up --build
+
+## Скриншоты
+
+![logs](/screenshots/image.png)
+
+![spreadsheets](/screenshots/image-1.png)
+
+![box_rates](/screenshots/image-2.png)
+
+![table](/screenshots/image-3.png)
