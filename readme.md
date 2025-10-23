@@ -65,13 +65,13 @@ PS: С наилучшими пожеланиями!
 
 ## Как запустить:
 
-1. Клонировать репозиторий
-2. cd ./btlz-wb-test
-3. npm i
+1. ```git clone https://github.com/johsamxd/btlz-wb-test.git```
+2. ```cd ./btlz-wb-test```
+3. ```npm i```
 4. Ввести в .env необходимые значения
 5. Получить json-файл ключа от google service account и загрузить в ./keys
 6. Выдать доступ к таблицам для service account, и не забыть включить Google Sheets API для service account
-7. docker compose up --build
+7. ```docker compose up --build```
 
 ## Скриншоты
 
